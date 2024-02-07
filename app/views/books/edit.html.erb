@@ -1,0 +1,38 @@
+
+
+<h1>Editing Book</h1>
+
+ <% if @book.errors.any? %>
+ <div class="error-message">
+  <h3><%= @book.errors.count %>error prohibited this book from being saved:</h3>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<%= form_with model: @book do |f| %>
+
+<div class="field">
+ <%= f.label :title, style:"font-size: 15px;" %>
+ <%= f.text_field :title, style:"width: 268px; height: 30px; padding: 1px 2px; border: 1px solid black; border-radius: 3px;" %>
+</div>
+
+<div class="field">
+ <%= f.label :body, style:"font-size: 15px;" %>
+ <%= f.text_area :body, style:"width: 236px; height: 50px; padding: 1px 2px; border: 1px solid black; border-radius: 3px;" %>
+</div>
+
+<div class="field">
+<%= f.submit 'Update Book', style:"width: 140px; height: 28px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;"%>
+</div>
+
+<% end %>
+
+
+
+<%= link_to "Show", book_path(@book.id), class:"black_link" %>
+|
+<%= link_to "Back", books_path, class:"black_link" %>

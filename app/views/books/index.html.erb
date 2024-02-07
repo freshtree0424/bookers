@@ -1,0 +1,51 @@
+<h1>Books</h1>
+
+<table>
+  <tr class="index-box">
+   <th class="index-title">本のタイトル</th>
+   <th class="index-body">感想</th>
+   <th></th>
+  </tr>
+
+  <% @books.each do |book| %>
+  <tr>
+    <td class="index-item"> <%=book.title %> </td>
+    <td class="index-item"> <%=book.body %> </td>
+    <td class="index-item"> <%= link_to "Show", book_path(book), class:"black_link" %></td>
+    <td class="index-item"> <%= link_to "Edit", edit_book_path(book), class:"black_link" %></td>
+    <td class="index-item"> <%= link_to "Destroy", book_path(book), class:"black_link", method: :delete, "data-confirm" => "Are you sure?" %></td>
+  <% end %>
+  </tr>
+</table>
+
+
+ <h2>New book</h2>
+ <% if @book.errors.any? %>
+ <div class="error-message">
+  <h3><%= @book.errors.count %>error prohibited this book from being saved:</h3>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+
+<div class="field">
+ <%= f.label :title, style:"font-size: 15px;" %>
+ <%= f.text_field :title, style:"width: 268px; height: 30px; padding: 1px 2px; border: 1px solid black; border-radius: 3px;" %>
+</div>
+
+<div class="field">
+ <%= f.label :body, style:"font-size: 15px;" %>
+ <%= f.text_area :body, style:"width: 236px; height: 50px; padding: 1px 2px; border: 1px solid black; border-radius: 3px;" %>
+</div>
+
+<%= f.submit 'Create Book', style:"width: 134px; height: 30px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;" %>
+
+ <% end %>
+
+

@@ -1,0 +1,12 @@
+
+ <p><span style="font-weight: bold;">本のタイトル:</span><%= @book.title %></p>
+
+ <p><span style="font-weight: bold;">感想:</span><%= @book.body %></p>
+
+
+
+<%= link_to "Edit", edit_book_path(@book.id), class:"black_link" %>
+|
+<%= link_to "Back", books_path, class:"black_link" %>
+
+
